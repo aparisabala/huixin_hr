@@ -1,6 +1,6 @@
 <?php
 return [
-    'pageTitle' => 'Management Login',
+    'pageTitle' => 'Welcome User',
     'pageSubTitle' => '',
     'add' => '',
     'update' => '',
@@ -27,6 +27,5 @@ return [
         'remember' => 'Remember Me',
         'btn_login' => 'Log In',
     ],
-    'table' => [
-    ]
+    'table' => []
 ];

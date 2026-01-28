@@ -13,15 +13,14 @@ class AdminUserLogoutController extends Controller
     use BaseTrait;
     public function __construct()
     {
-        $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
+        $this->middleware(['auth:admin', 'HasAdminUserPassword', 'HasAdminUserAuth', 'SetAdminLanguage']);
         $this->lang = 'admin.logout';
     }
 
-    public function logout(Request $request) : RedirectResponse
+    public function logout(Request $request): RedirectResponse
     {
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login.index')->withErrors(["success" => [0 =>  pxLang($this->lang,'mgs.logout_sucess')]]);
-    
+        return redirect()->route('admin.login.index')->withErrors(["success" => [0 =>  pxLang($this->lang, 'mgs.logout_sucess')]]);
     }
     //vpx_attach
 }

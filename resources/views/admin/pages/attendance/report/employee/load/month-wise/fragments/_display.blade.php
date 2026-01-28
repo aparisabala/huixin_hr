@@ -1,0 +1,44 @@
+@if($data['item'] != null)
+<div class="card rounded page-block p-3" id="print">
+    <div class="d-flex flex-row justify-content-start">
+        <h4 class="me-auto"> Attendace Report for  {{$data['item']?->name}} | Date: {{$data['from_date']}} - {{$data['to_date']}}</h4>
+        <span class="card p-1 cursor-pointer bg-info text-white d-print-none" id="trigPrint">
+            <i class="fa fa-print"></i>
+        </span>
+    </div>
+    @if( $data['lateCount'] > 0)
+        <p class="text-danger m-0"> Late Count: {{ $data['lateCount'] }}</p>
+        <p class="text-danger m-0"> Total Late Hours: {{$data['totalLateHours']}}</p>
+    @endif
+    <hr>
+    <div class="row">
+        @foreach ($data['dates'] as $item)
+            <div class="col-md-2">
+                <div class="text-start card p-1 fs-12 fix-att-card mb-2">
+                    <h6 class="p-1">{{$item['view']}}</h6>
+                    @if($item['has'])
+                        <div class="">
+                            In: <span class="text-success">{{$item['in_time']}}</span>
+                        </div>
+                        <div class="">
+                            Out: <span class="">{{$item['out_time']}}</span>
+                        </div>
+                        <div class="">
+                            Hours: <span>{{$item['working']}}</span>
+                        </div>
+                        @if($item['late'] != 'no')
+                            <div class="text-danger">
+                                Late: <span>{{$item['late']}}</span>
+                            </div>
+                        @endif
+                    @else
+                        -
+                    @endif
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+@else
+<p class=""> No employee found</p>
+@endif

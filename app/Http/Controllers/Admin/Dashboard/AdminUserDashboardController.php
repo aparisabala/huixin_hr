@@ -13,7 +13,7 @@ class AdminUserDashboardController extends Controller
     use BaseTrait;
     public function __construct()
     {
-        $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
+        $this->middleware(['auth:admin', 'HasAdminUserPassword', 'HasAdminUserAuth', 'SetAdminLanguage']);
     }
 
     /**
@@ -22,7 +22,7 @@ class AdminUserDashboardController extends Controller
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         return view('admin.pages.dashboard.index');
     }

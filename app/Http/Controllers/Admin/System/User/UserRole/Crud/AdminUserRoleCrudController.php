@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\System\User\UserRole\Crud;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\System\User\UserRole\Crud\ValidateStoreAdminUserRole;
 use App\Repositories\Admin\System\User\UserRole\Crud\IAdminUserRoleCrudRepository;
@@ -8,12 +9,15 @@ use App\Traits\BaseTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-class AdminUserRoleCrudController  extends Controller {
+
+class AdminUserRoleCrudController  extends Controller
+{
 
     use BaseTrait;
-    public function __construct(private IAdminUserRoleCrudRepository $iAdminUserRoleCrudRepo) {
-        $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
-        $this->lang= 'admin.system.user.user-role';
+    public function __construct(private IAdminUserRoleCrudRepository $iAdminUserRoleCrudRepo)
+    {
+        $this->middleware(['auth:admin', 'HasAdminUserPassword', 'HasAdminUserAuth', 'SetAdminLanguage']);
+        $this->lang = 'admin.system.user.user-role';
     }
 
     /**
@@ -22,11 +26,11 @@ class AdminUserRoleCrudController  extends Controller {
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $data = $this->iAdminUserRoleCrudRepo->index($request);
         $data['lang'] = $this->lang;
-        return view('admin.pages.system.user.user-role.crud.index',compact('data'));
+        return view('admin.pages.system.user.user-role.crud.index', compact('data'));
     }
 
     /**
@@ -35,7 +39,7 @@ class AdminUserRoleCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function list(Request $request) : JsonResponse
+    public function list(Request $request): JsonResponse
     {
         return  $this->iAdminUserRoleCrudRepo->list($request);
     }
@@ -58,9 +62,9 @@ class AdminUserRoleCrudController  extends Controller {
      * @param Request $request
      * @return view
      */
-    public function edit($id,Request $request) : view
+    public function edit($id, Request $request): view
     {
-        $data = $this->iAdminUserRoleCrudRepo->index($request,$id);
+        $data = $this->iAdminUserRoleCrudRepo->index($request, $id);
         $data['lang'] = $this->lang;
         return view('admin.pages.system.user.user-role.crud.index', compact('data'));
     }
@@ -72,9 +76,9 @@ class AdminUserRoleCrudController  extends Controller {
      * @param integer|string $id
      * @return JsonResponse
      */
-    public function update(Request $request, $id) : JsonResponse
+    public function update(Request $request, $id): JsonResponse
     {
-        return $this->iAdminUserRoleCrudRepo->update($request,$id);
+        return $this->iAdminUserRoleCrudRepo->update($request, $id);
     }
 
     /**
@@ -83,9 +87,9 @@ class AdminUserRoleCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-     public function deleteList(Request $request) : JsonResponse
+    public function deleteList(Request $request): JsonResponse
     {
-       return $this->iAdminUserRoleCrudRepo->deleteList($request);
+        return $this->iAdminUserRoleCrudRepo->deleteList($request);
     }
 
 
@@ -95,9 +99,8 @@ class AdminUserRoleCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-     public function updateList(Request $request) : JsonResponse
+    public function updateList(Request $request): JsonResponse
     {
-       return $this->iAdminUserRoleCrudRepo->updateList($request);
+        return $this->iAdminUserRoleCrudRepo->updateList($request);
     }
-
 }

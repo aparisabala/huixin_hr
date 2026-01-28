@@ -26,7 +26,7 @@ class AdminUserLoginController extends Controller
      * @return View
      */
     public function index(Request $request) : View
-    {   
+    {
         $data = [];
         if(isset($_GET['pass_changed']) && $_GET['pass_changed']) {
             $data = [

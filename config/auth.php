@@ -41,10 +41,14 @@ return [
             'provider' => 'users',
         ],
         //vpx_guards
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employee',
+        ],
         'admin' => [
-    'driver' => 'session',
-    'provider' => 'admin',
-],
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -70,10 +74,14 @@ return [
             'model' => App\Models\User::class,
         ],
         //vpx_guard_providers
+        'employee' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
         'admin' => [
-    'driver' => 'eloquent',
-    'model' => App\Models\AdminUser::class,
-],
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUser::class,
+        ],
     ],
 
     /*
@@ -103,12 +111,18 @@ return [
             'throttle' => 60,
         ],
         //vpx_guard_passwords
+        'employee' => [
+            'provider' => 'employee',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'admin' => [
-    'provider' => 'admin',
-    'table' => 'password_reset_tokens',
-    'expire' => 60,
-    'throttle' => 60,
-],
+            'provider' => 'admin',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*

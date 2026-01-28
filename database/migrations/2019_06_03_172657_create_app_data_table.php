@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('app_data', function (Blueprint $table) {
             $table->id();
+            $table->integer('last_employee_id')->default(1);
             $table->timestamps();
         });
     }

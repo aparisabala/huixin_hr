@@ -7,6 +7,8 @@ use App\Http\Middleware\SetBootConfig;
 //vpx_imports
 use App\Http\Middleware\Admin\HasAdminUserPassword;
 use App\Http\Middleware\Admin\HasAdminUserAuth;
+use App\Http\Middleware\Admin\SetAdminLanguage;
+
 $middlewareAliases = [
     'auth' =>  App\Http\Middleware\Authenticate::class,
     'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -20,17 +22,18 @@ $middlewareAliases = [
     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     //vpx_register_middlewares
-        'HasAdminUserPassword' => HasAdminUserPassword::class,
-        'HasAdminUserAuth' => HasAdminUserAuth::class,
+    'HasAdminUserPassword' => HasAdminUserPassword::class,
+    'HasAdminUserAuth' => HasAdminUserAuth::class,
+    'SetAdminLanguage' => SetAdminLanguage::class,
 ];
 $exceptions = require __DIR__ . '/exceptions.php';
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware) use($middlewareAliases) : void {
+    ->withMiddleware(function (Middleware $middleware) use ($middlewareAliases): void {
 
         $middleware->append([
             \App\Http\Middleware\TrustProxies::class,
@@ -56,11 +59,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->group('api', [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             //vpx_api_middlewares
         ]);
         $middleware->alias($middlewareAliases);
-
     })
     ->withExceptions($exceptions)->create();

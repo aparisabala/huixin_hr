@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\System\User\Crud;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\System\User\Crud\ValidateStoreAdminUser;
 use App\Repositories\Admin\System\User\Crud\IAdminUserCrudRepository;
@@ -9,26 +10,29 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\AdminUserRole;
-class AdminUserCrudController  extends Controller {
+
+class AdminUserCrudController  extends Controller
+{
 
     use BaseTrait;
-    public function __construct(private IAdminUserCrudRepository $iAdminUserCrudRepo) {
-        $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
-        $this->lang= 'admin.system.user';
+    public function __construct(private IAdminUserCrudRepository $iAdminUserCrudRepo)
+    {
+        $this->middleware(['auth:admin', 'HasAdminUserPassword', 'HasAdminUserAuth', 'SetAdminLanguage']);
+        $this->lang = 'admin.system.user';
     }
 
-     /**
+    /**
      * Index page for AdminUser crud
      *
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $data = $this->iAdminUserCrudRepo->index($request);
         $data['lang'] = $this->lang;
-        $data['userRoles'] = AdminUserRole::select(['id','name','code'])->get();
-        return view('admin.pages.system.user.crud.index',compact('data'));
+        $data['userRoles'] = AdminUserRole::select(['id', 'name', 'code'])->get();
+        return view('admin.pages.system.user.crud.index', compact('data'));
     }
 
     /**
@@ -37,7 +41,7 @@ class AdminUserCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-    public function list(Request $request) : JsonResponse
+    public function list(Request $request): JsonResponse
     {
         return  $this->iAdminUserCrudRepo->list($request);
     }
@@ -60,11 +64,11 @@ class AdminUserCrudController  extends Controller {
      * @param Request $request
      * @return view
      */
-    public function edit($id,Request $request) : view
+    public function edit($id, Request $request): view
     {
-        $data = $this->iAdminUserCrudRepo->index($request,$id);
+        $data = $this->iAdminUserCrudRepo->index($request, $id);
         $data['lang'] = $this->lang;
-        $data['userRoles'] = AdminUserRole::select(['id','name','code'])->get();
+        $data['userRoles'] = AdminUserRole::select(['id', 'name', 'code'])->get();
         return view('admin.pages.system.user.crud.index', compact('data'));
     }
 
@@ -75,9 +79,9 @@ class AdminUserCrudController  extends Controller {
      * @param integer|string $id
      * @return JsonResponse
      */
-    public function update(Request $request, $id) : JsonResponse
+    public function update(Request $request, $id): JsonResponse
     {
-        return $this->iAdminUserCrudRepo->update($request,$id);
+        return $this->iAdminUserCrudRepo->update($request, $id);
     }
 
     /**
@@ -86,9 +90,9 @@ class AdminUserCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-     public function deleteList(Request $request) : JsonResponse
+    public function deleteList(Request $request): JsonResponse
     {
-       return $this->iAdminUserCrudRepo->deleteList($request);
+        return $this->iAdminUserCrudRepo->deleteList($request);
     }
 
 
@@ -98,8 +102,8 @@ class AdminUserCrudController  extends Controller {
      * @param Request $request
      * @return JsonResponse
      */
-     public function updateList(Request $request) : JsonResponse
+    public function updateList(Request $request): JsonResponse
     {
-       return $this->iAdminUserCrudRepo->updateList($request);
+        return $this->iAdminUserCrudRepo->updateList($request);
     }
 }

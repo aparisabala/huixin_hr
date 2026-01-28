@@ -9,12 +9,14 @@ use App\Traits\BaseTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class AdminUserPolicyController extends Controller {
+class AdminUserPolicyController extends Controller
+{
 
     use BaseTrait;
-    public function __construct(private IAdminUserPolicyRepository $iAdminUserPolicy) {
-        $this->middleware(['auth:admin','HasAdminUserPassword','HasAdminUserAuth']);
-        $this->lang= 'admin.system.user.policy';
+    public function __construct(private IAdminUserPolicyRepository $iAdminUserPolicy)
+    {
+        $this->middleware(['auth:admin', 'HasAdminUserPassword', 'HasAdminUserAuth', 'SetAdminLanguage']);
+        $this->lang = 'admin.system.user.policy';
     }
 
     /**
@@ -23,11 +25,11 @@ class AdminUserPolicyController extends Controller {
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $data = $this->iAdminUserPolicy->index($request);
         $data['lang'] = $this->lang;
-        return view('admin.pages.system.user.policy.index')->with('data',$data);
+        return view('admin.pages.system.user.policy.index')->with('data', $data);
     }
 
     /**
@@ -38,6 +40,6 @@ class AdminUserPolicyController extends Controller {
      */
     public function update(Request $request)
     {
-       return $this->iAdminUserPolicy->update($request);
+        return $this->iAdminUserPolicy->update($request);
     }
 }

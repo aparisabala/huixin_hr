@@ -9,16 +9,16 @@ return [
                     'fontAwesome',
                     'boxIcon',
                     'jqConfirm',
-                    'datatable5'
+                    'datatable5',
+                    'dateTimePicker'
                 ],
                 'local' => [
+                    'px/plugins',
                     'px',
                     'panel/admin',
                     'panel/minible'
                 ],
-                'conditional' => [
-
-                ]
+                'conditional' => []
             ],
             'scripts' => [
                 'cdns' => [
@@ -35,6 +35,7 @@ return [
                     'dateTimePicker'
                 ],
                 'local' => [
+                    'px/plugins',
                     'px',
                     'panel/admin',
                     'panel/minible'
@@ -44,7 +45,57 @@ return [
                     'dashboard',
                     'setup',
                     'reset',
-                    'system'
+                    'system',
+                    'data-library',
+                    'employee',
+                    'attendance'
+                ]
+            ]
+        ],
+        'employee' => [
+            'styles' => [
+                'cdns' => [
+                    'bootstrap5',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5',
+                    'dateTimePicker'
+                ],
+                'local' => [
+                    'px/plugins',
+                    'px',
+                    'panel/employee',
+                    'panel/minible'
+                ],
+                'conditional' => []
+            ],
+            'scripts' => [
+                'cdns' => [
+                    'jq',
+                    'bootstrap5',
+                    'popper',
+                    'fontAwesome',
+                    'boxIcon',
+                    'jqConfirm',
+                    'datatable5',
+                    'dataTableSelectCheckbox',
+                    'pdfmake',
+                    'xlsx',
+                    'dateTimePicker'
+                ],
+                'local' => [
+                    'px/plugins',
+                    'px',
+                    'panel/employee',
+                    'panel/minible'
+                ],
+                'conditional' => [
+                    'login',
+                    'dashboard',
+                    'setup',
+                    'reset',
+                    'attendance'
                 ]
             ]
         ]
@@ -57,7 +108,7 @@ return [
             'jqConfirm' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g==" crossorigin="anonymous" referrerpolicy="no-referrer" />',
             'datatable5' => '<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.10/css/jquery.dataTables.min.css">',
             'dataTableSelectCheckbox' => '<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.13/css/dataTables.checkboxes.css">',
-            'dateTimePicker' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />'
+            'dateTimePicker' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />'
         ]
     ],
     'scripts' => [
@@ -83,6 +134,41 @@ return [
         'admin.user.nav' => 'admin/setup/navs/index',
         'admin.system.user' => 'admin/system/user/index',
         'admin.system.user.user-role' => 'admin/system/user/user-role/index',
-        'admin.system.user.policy' => 'admin/system/user/policy/index'
+        'admin.system.user.policy' => 'admin/system/user/policy/index',
+        'admin.data-library.salary.heads.crud' => 'admin/data-library/salary/heads/crud/index',
+        'admin.data-library.designation.crud' => 'admin/data-library/designation/crud/index',
+        'admin.data-library.department.crud' => 'admin/data-library/department/crud/index',
+        'admin.data-library.leave.crud' => 'admin/data-library/leave/crud/index',
+        'admin.employee.draft.crud' => 'admin/employee/draft/crud/index',
+        'admin.employee.draft.crud.update-basic.form.update' => 'admin/employee/draft/crud/update-basic/form/update/index',
+        'admin.employee.draft.crud.education.crud' => 'admin/employee/draft/crud/education/crud/index',
+        'admin.data-library.board.crud' => 'admin/data-library/board/crud/index',
+        'admin.data-library.dgree.crud' => 'admin/data-library/dgree/crud/index',
+        'admin.employee.draft.crud.leave.crud' => 'admin/employee/draft/crud/leave/crud/index',
+        'admin.employee.draft.crud.bank-details.form.update' => 'admin/employee/draft/crud/bank-details/form/update/index',
+        'admin.data-library.banks.crud' => 'admin/data-library/banks/crud/index',
+        'admin.data-library.salary.group.crud' => 'admin/data-library/salary/group/crud/index',
+        'admin.data-library.salary.group.crud.modal.refresh-salary-item' => 'admin/data-library/salary/group/crud/modal/refresh-salary-item/index',
+        'admin.employee.draft.crud.salary-setup.form.update' => 'admin/employee/draft/crud/salary-setup/form/update/index',
+        'admin.employee.draft.crud.modal.view-draft-employee' => 'admin/employee/draft/crud/modal/view-draft-employee/index',
+        'admin.employee.active.crud' => 'admin/employee/active/crud/index',
+        'employee.main-nav' => 'employee/layout/main-nav',
+        'employee.login' => 'employee/login/index',
+        'employee.reset' => 'employee/reset/index',
+        'employee.profile.setup' => 'employee/setup/index',
+        'employee.user.update' => 'employee/setup/user/index',
+        'employee.user.pass.update' => 'employee/setup/pass/index',
+        'employee.user.nav' => 'employee/setup/navs/index',
+        'employee.system.user' => 'employee/system/user/index',
+        'employee.attendance.entry.form.store' => 'employee/attendance/entry/form/store/index',
+        'employee.attendance.report.monthly.details' => 'employee/attendance/report/monthly/details/index',
+        'admin.attendance.report.employee.load' => 'admin/attendance/report/employee/load/index',
+        'employee.attendance.reconciliation.crud' => 'employee/attendance/reconciliation/crud/index',
+        'employee.attendance.reports.monthly.details.modal.add-reconciliation' => 'employee/attendance/reports/monthly/details/modal/add-reconciliation/index',
+        'admin.attendance.reconciliation.crud' => 'admin/attendance/reconciliation/crud/index',
+        'admin.data-library.inventory.category.crud' => 'admin/data-library/inventory/category/crud/index',
+        'admin.data-library.inventory.category.category-item.crud' => 'admin/data-library/inventory/category/category-item/crud/index',
+        'admin.data-library.documents.crud' => 'admin/data-library/documents/crud/index',
+        'admin.employee.draft.crud.document.crud' => 'admin/employee/draft/crud/document/crud/index'
     ]
 ];

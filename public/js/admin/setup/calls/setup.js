@@ -1,13 +1,14 @@
-$(document).ready(function () {
-    PX?.initCropper('image', {
+$(document).ready(function(){
+
+    $('#image').imageCropper({
         outputWidth: 400,
         outputHeight: 400,
         mimeType: 'image/jpeg',
-        maxFileSize: 100000,
         boundingBox: { width: 250, height: 250 },
         quality: 1
     });
-    if ($("#frmUpdateAdminUserSetupProfile").length > 0) {
+
+    if($("#frmUpdateAdminUserSetupProfile").length > 0) {
         let rules = {
             name: {
                 required: true,
@@ -30,7 +31,7 @@ $(document).ready(function () {
                 minlength: 8
             },
         };
-        if ($("#img_uploaded").val() == "no") {
+        if($("#img_uploaded").val() == "no") {
             rules.image = {
                 required: true,
             }
@@ -46,7 +47,7 @@ $(document).ready(function () {
         });
     }
 
-    if ($("#frmAdminUserUpdateProfile").length > 0) {
+     if($("#frmAdminUserUpdateProfile").length > 0) {
         let rules = {
             name: {
                 required: true,
@@ -61,7 +62,7 @@ $(document).ready(function () {
                 email: true,
             }
         };
-        if ($("#img_uploaded").val() == "no") {
+        if($("#img_uploaded").val() == "no") {
             rules.image = {
                 required: true,
             }
@@ -77,7 +78,7 @@ $(document).ready(function () {
         });
     }
 
-    if ($("#frmUpdateAdminUserPasssword").length > 0) {
+    if($("#frmUpdateAdminUserPasssword").length > 0) {
         let rules = {
             old_password: {
                 required: true,

@@ -22,12 +22,12 @@ class AdminUserSetupController extends Controller
     use BaseTrait;
     public function __construct()
     {
-       $this->middleware(['auth:admin','HasAdminUserAuth']);
-       $this->sizes =  [
-            ['width'=>300, 'height'=> 300,'com'=> 90],
-            ['width'=>80, 'height'=> 80,'com'=> 100],
-       ];
-       $this->lang = 'admin.profile.setup';
+        $this->middleware(['auth:admin', 'HasAdminUserAuth', 'SetAdminLanguage']);
+        $this->sizes =  [
+            ['width' => 300, 'height' => 300, 'com' => 90],
+            ['width' => 80, 'height' => 80, 'com' => 100],
+        ];
+        $this->lang = 'admin.profile.setup';
     }
 
     /**
@@ -35,29 +35,29 @@ class AdminUserSetupController extends Controller
      *
      * @param Request $request
      * @return View
-    */
-    public function index(Request $request) :  RedirectResponse | View
+     */
+    public function index(Request $request): RedirectResponse | View
     {
         $user = Auth::user();
-        if($user->setup_done == "yes") {
+        if ($user->setup_done == "yes") {
             return redirect()->route('admin.dashboard.index');
         }
         $data['item'] = $user;
         $data['lang'] = $this->lang;
-        return  view('admin.pages.setup.index')->with("data",$data);
+        return  view('admin.pages.setup.index')->with("data", $data);
     }
 
-     /**
+    /**
      * AdminUser Profile Update
      *
      * @param  Request $request
      * @return JsonResponse
-    */
-    public function update(Request $request) : JsonResponse
+     */
+    public function update(Request $request): JsonResponse
     {
         $user = AdminUser::find($request?->auth?->id);
         if (empty($user)) {
-            return $this->response([ 'type' => "noUpdate", "title" => pxLang($this->lang,'mgs.no_user')]);
+            return $this->response(['type' => "noUpdate", "title" => pxLang($this->lang, 'mgs.no_user')]);
         }
         $validator = Validator::make($request->all(), (new ValidateAdminUserProfileSetup())->rules($request, $user));
         if ($validator->fails()) {
@@ -81,7 +81,10 @@ class AdminUserSetupController extends Controller
                 $image_link = (string) Uuid::generate(4);
                 $extension = $image->getClientOriginalExtension();
                 $this->imageVersioning([
-                    'image' => $image, 'path' => $path, 'image_link' => $image_link, 'extension' => $extension,
+                    'image' => $image,
+                    'path' => $path,
+                    'image_link' => $image_link,
+                    'extension' => $extension,
                     'appendSize' => true,
                     'onlyAppend' => $this->sizes
                 ]);
@@ -91,7 +94,7 @@ class AdminUserSetupController extends Controller
             $user->save();
             $data['extraData'] = [
                 "redirect" => 'admin/dashboard',
-                "inflate" =>  pxLang($this->lang,'mgs.update_success')
+                "inflate" =>  pxLang($this->lang, 'mgs.update_success')
             ];
             return $this->response(['type' => 'success', "data" => $data]);
         } catch (\Exception $e) {

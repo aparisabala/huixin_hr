@@ -11,7 +11,7 @@
                         <div class="col-md-4">
                             <div class="card p-2 shadow-card card-border">
                                 <div class="form-group text-left mb-3">
-                                <label class="form-label"> <b>{{pxLang($data['lang'],'fields.name')}}</b> <em class="required">*</em> <span id="name_error"></span></label>
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.name')}}</b> <em class="required">*</em> <span id="name_error"></span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="name" id="name">
                                     </div>

@@ -32,7 +32,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th style="width: 100px;"> Action </th>
-                                                                <th style="width: 200px;"> Key </th>
+                                                                <th style="width: 200px"> Key </th>
                                                                 @foreach ($data['availableUser'] as $key =>  $item)
                                                                     <th> {{$item?->name}} </th>
                                                                 @endforeach

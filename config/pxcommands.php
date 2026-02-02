@@ -18,7 +18,9 @@ return [
                     'panel/admin',
                     'panel/minible'
                 ],
-                'conditional' => []
+                'conditional' => [
+
+                ]
             ],
             'scripts' => [
                 'cdns' => [
@@ -68,7 +70,9 @@ return [
                     'panel/employee',
                     'panel/minible'
                 ],
-                'conditional' => []
+                'conditional' => [
+
+                ]
             ],
             'scripts' => [
                 'cdns' => [
@@ -169,6 +173,7 @@ return [
         'admin.data-library.inventory.category.crud' => 'admin/data-library/inventory/category/crud/index',
         'admin.data-library.inventory.category.category-item.crud' => 'admin/data-library/inventory/category/category-item/crud/index',
         'admin.data-library.documents.crud' => 'admin/data-library/documents/crud/index',
-        'admin.employee.draft.crud.document.crud' => 'admin/employee/draft/crud/document/crud/index'
+        'admin.employee.draft.crud.document.crud' => 'admin/employee/draft/crud/document/crud/index',
+        'admin.employee.active.dt.active-employee.modal.user-setting' => 'admin/employee/active/dt/active-employee/modal/user-setting/index'
     ]
 ];

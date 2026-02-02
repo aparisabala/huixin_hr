@@ -8,6 +8,7 @@ use App\Http\Middleware\SetBootConfig;
 use App\Http\Middleware\Admin\HasAdminUserPassword;
 use App\Http\Middleware\Admin\HasAdminUserAuth;
 use App\Http\Middleware\Admin\SetAdminLanguage;
+use App\Http\Middleware\Employee\HasEmployeeAuth;
 use App\Http\Middleware\Employee\HasEmployeePassword;
 
 $middlewareAliases = [
@@ -26,7 +27,8 @@ $middlewareAliases = [
     'HasAdminUserPassword' => HasAdminUserPassword::class,
     'HasAdminUserAuth' => HasAdminUserAuth::class,
     'SetAdminLanguage' => SetAdminLanguage::class,
-    'HasEmployeePassword' => HasEmployeePassword::class
+    'HasEmployeePassword' => HasEmployeePassword::class,
+    'HasEmployeeAuth' => HasEmployeeAuth::class
 ];
 $exceptions = require __DIR__ . '/exceptions.php';
 return Application::configure(basePath: dirname(__DIR__))

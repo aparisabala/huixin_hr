@@ -10,7 +10,7 @@ return function (Exceptions $exceptions) {
     $exceptions->render(function (Throwable $exception, $request) {
 
         if ($exception instanceof MethodNotAllowedHttpException) {
-            return Response::json(['route_error' => 'No direct access'],405);
+            return Response::json(['route_error' => 'No direct access'], 405);
         }
         if ($exception instanceof AuthenticationException) {
             if ($request->expectsJson()) {
@@ -23,9 +23,12 @@ return function (Exceptions $exceptions) {
                 $login = 'site.home';
                 switch ($guard) {
                     //vpx_guard_redirections
-        case 'admin':
-    $login = 'admin.login.index';
-    break;
+                    case 'admin':
+                        $login = 'admin.login.index';
+                        break;
+                    case 'employee':
+                        $login = 'employee.login.index';
+                        break;
                     default:
                         break;
                 }
@@ -33,13 +36,11 @@ return function (Exceptions $exceptions) {
             }
         }
 
-        if ($exception->getCode() >= 500 ) {
+        if ($exception->getCode() >= 500) {
             return response()->view('errors.exception', [
                 'exception' => $exception
             ], 500);
         }
-
-
     });
     $exceptions->report(function (Throwable $e) {
         // Example: Sentry::captureException($e);

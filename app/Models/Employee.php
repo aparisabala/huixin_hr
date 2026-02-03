@@ -24,6 +24,7 @@ class Employee extends Authenticatable
         'email',
         'mobile_numnber',
         'password',
+        'user_ip'
     ];
 
     /**

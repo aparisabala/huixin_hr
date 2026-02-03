@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,16 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 switch ($guard) {
                     //vpx_guard_redirections
-        case 'admin':
-    if (Auth::guard($guard)->check()) {
-        return redirect()->route('admin.dashboard.index');
-    }
-break;
+                    case 'admin':
+                        if (Auth::guard($guard)->check()) {
+                            return redirect()->route('admin.dashboard.index');
+                        }
+                        break;
+                    case 'employee':
+                        if (Auth::guard($guard)->check()) {
+                            return redirect()->route('employee.dashboard.index');
+                        }
+                        break;
                     default:
                         if (Auth::guard($guard)->check()) {
                             return redirect('/');

@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     if ($("#dtActiveEmployee").length > 0) {
-        const {pageLang={}} = PX?.config;
-        const {table={}} = pageLang;
+        const { pageLang = {} } = PX?.config;
+        const { table = {} } = pageLang;
         let trigDetails = {
             body: {},
             modalCallback: 'viewEmployeeModal',
@@ -11,6 +11,18 @@ $(document).ready(function(){
             title: 'Employee Details',
             globLoader: false
         };
+
+        let trigUserSet = {
+            body: {},
+            modalCallback: 'userSetting',
+            element: 'userSetting',
+            script: 'admin/employee/active/dt/active-employee/user-setting/display',
+            title: 'User Settings',
+            globLoader: false
+        };
+
+
+
         let col_draft = [
             {
                 data: 'id',
@@ -20,7 +32,7 @@ $(document).ready(function(){
                 data: 'employee_id',
                 title: table?.employee_id
             },
-             {
+            {
                 data: 'image',
                 title: table?.avatar
             },
@@ -61,14 +73,22 @@ $(document).ready(function(){
                 render: function (data, type, row) {
                     trigDetails = {
                         ...trigDetails,
-                        body: {id: data?.id},
+                        body: { id: data?.id },
                         title: `Details of ${data?.name}`
+                    };
+                    trigUserSet = {
+                        ...trigUserSet,
+                        body: { id: data?.id },
+                        title: `Settings of ${data?.name}`
                     };
                     return `<span  class="btn btn-outline-success btn-sm edit" title="Assign Assets">
                         Update
                     </span>
                     <span  class="btn btn-outline-info btn-sm edit" title="Assign Assets">
                         Assets
+                    </span>
+                    <span  data-bs-toggle='modal' data-bs-target='.editmodal' data-edit-prop='${JSON.stringify(trigUserSet)}' class="btn btn-outline-info btn-sm edit" title="View Details">
+                        <i class="fas fa-cog"></i>
                     </span>
                     <span  data-bs-toggle='modal' data-bs-target='.editmodal' data-edit-prop='${JSON.stringify(trigDetails)}' class="btn btn-outline-success btn-sm edit" title="View Details">
                             <i class="fas fa-eye"></i>

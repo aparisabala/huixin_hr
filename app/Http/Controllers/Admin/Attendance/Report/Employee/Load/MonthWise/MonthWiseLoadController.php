@@ -75,4 +75,13 @@ class MonthWiseLoadController extends Controller
         $response = ['extraData' => ['inflate' => pxLang($data['lang'], '', 'common.response_success')], 'view' => $view, 'data' => $data];
         return $this->response(['type' => 'success', 'data' => $response]);
     }
+
+
+    function cheExccedTotalDate($request)
+    {
+        $from = Carbon::parse($request->from_date);
+        $to   = Carbon::parse($request->to_date);
+        $days = $from->diffInDays($to);
+        return ($days > 31) ? true : false;
+    }
 }

@@ -88,7 +88,6 @@ function sendTiming(frm, type) {
                     let newbody = op.body;
                     newbody.append('latitude', latitude);
                     newbody.append('langututute', longitude);
-                    console.log(lang);
                     callback({ ...op, body: newbody });
                 },
                 function (error) {

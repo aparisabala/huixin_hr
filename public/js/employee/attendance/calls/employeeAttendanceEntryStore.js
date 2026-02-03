@@ -87,7 +87,7 @@ function sendTiming(frm, type) {
                     const longitude = position.coords.longitude;
                     let newbody = op.body;
                     newbody.append('latitude', latitude);
-                    newbody.append('langututute', longitude);
+                    newbody.append('longitude', longitude);
                     callback({ ...op, body: newbody });
                 },
                 function (error) {

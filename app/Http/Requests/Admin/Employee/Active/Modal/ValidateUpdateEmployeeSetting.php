@@ -30,7 +30,7 @@ class ValidateUpdateEmployeeSetting extends FormRequest
     {
         $rules =  [];
         if ($row->isDirty('user_ip')) {
-            $rules['user_ip'] = 'required|string|max:253|unique:employees,user_ip';
+            $rules['user_ip'] = 'required|string|max:253';
         }
         return $rules;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ppp\Http\Requests\Admin\Employee\Active\Modal;
+namespace App\Http\Requests\Admin\Employee\Active\Modal;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;

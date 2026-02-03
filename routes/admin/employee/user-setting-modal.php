@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 //vpx_imports
 Route::prefix('admin')->group(function () {
     Route::post('employee/active/dt/active-employee/user-setting/display', [UserSettingModalController::class, 'display']);
-    Route::post('employee/active/dt/active-employee/user-setting/updatesplay', [UserSettingModalController::class, 'update']);
+    Route::post('employee/active/dt/active-employee/user-setting/update', [UserSettingModalController::class, 'update']);
     //vpx_attach
 });

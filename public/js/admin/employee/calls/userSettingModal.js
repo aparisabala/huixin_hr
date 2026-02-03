@@ -9,7 +9,7 @@ function userSetting(op) {
                 maxlength: 253,
             },
         };
-        ajaxRequest({
+        PX?.ajaxRequest({
             element: 'frmUpdateUserSettings',
             validation: true,
             script: 'admin/employee/active/dt/active-employee/user-setting/update',

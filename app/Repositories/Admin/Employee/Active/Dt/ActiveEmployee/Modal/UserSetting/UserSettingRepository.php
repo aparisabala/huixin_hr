@@ -2,10 +2,13 @@
 
 namespace App\Repositories\Admin\Employee\Active\Dt\ActiveEmployee\Modal\UserSetting;
 
+use App\Http\Requests\Admin\Employee\Active\Modal\ValidateUpdateEmployeeSetting;
 use App\Models\Employee;
 use App\Repositories\BaseRepository;
-use Ppp\Http\Requests\Admin\Employee\Active\Modal\ValidateUpdateEmployeeSetting;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+use DB;
+
 class UserSettingRepository extends BaseRepository implements IUserSettingRepository
 {
 
@@ -17,7 +20,7 @@ class UserSettingRepository extends BaseRepository implements IUserSettingReposi
      */
     public function display($request): array
     {
-        $data['item'] = null;
+        $data['item'] = Employee::find($request->id);
         return $data;
     }
 

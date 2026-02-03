@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Employee\Attendance\Entry\Form\Store;
 
+use App\Models\AdminUser;
 use App\Models\Employee;
 use App\Models\EmployeeAttendance;
 use App\Models\EmployeeAttendanceHistory;
@@ -14,10 +15,15 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use Auth;
 use File;
-class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements IEmployeeAttendanceEntryStoreRepository {
+use Hash;
+use Illuminate\Support\Str;
+
+class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements IEmployeeAttendanceEntryStoreRepository
+{
 
     use BaseTrait;
-    public function __construct() {
+    public function __construct()
+    {
         $this->LoadModels(['EmployeeAttendance']);
     }
 
@@ -28,11 +34,11 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
      * @param integer|string $id
      * @return array
      */
-    public function index($request, $id=null) : array
+    public function index($request, $id = null): array
     {
-       $this->saveTractAction(
+        $this->saveTractAction(
             $this->getTrackData(
-                title: 'EmployeeAttendance store was viewed by '.$request?->auth?->name.' at '.Carbon::now()->format('d M Y H:i:s A'),
+                title: 'EmployeeAttendance store was viewed by ' . $request?->auth?->name . ' at ' . Carbon::now()->format('d M Y H:i:s A'),
                 request: $request,
                 onlyTitle: true
             )
@@ -47,22 +53,22 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
      * @param Request  $request
      * @return JsonResponse
      */
-    public function store($request) : JsonResponse
+    public function store($request): JsonResponse
     {
         $userAgent = $request->header('User-Agent');
         if (!str_contains($userAgent, 'Chrome')) {
-           return $this->response(['type'=>'noUpdate','title'=>  pxLang($request->lang,'mgs.chrome_required')]);
+            return $this->response(['type' => 'noUpdate', 'title' =>  pxLang($request->lang, 'mgs.chrome_required')]);
         }
-        $employee = Employee::where([['id','=',$request->employee_id]])->first();
-        if(empty($employee)) {
-            return $this->response(['type'=>'noUpdate','title'=> pxLang($request->lang,'mgs.employee_no_found')]);
+        $employee = Employee::where([['id', '=', $request->employee_id]])->first();
+        if (empty($employee)) {
+            return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.employee_no_found')]);
         }
         $today = Carbon::now()->format('Y-m-d');
         $nowTime =  Carbon::now()->format('H:i:s');
         try {
             DB::beginTransaction();
-            $ex = EmployeeAttendance::where([['employee_id','=',$employee->id],['att_date','=', $today]])->first();
-            if(empty($ex)) {
+            $ex = EmployeeAttendance::where([['employee_id', '=', $employee->id], ['att_date', '=', $today]])->first();
+            if (empty($ex)) {
                 $ex = new EmployeeAttendance;
                 $ex->employee_id = $employee->id;
                 $ex->att_date = $today;
@@ -88,36 +94,36 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
             }
             DB::commit();
             $response['extraData'] = [
-                'inflate' => pxLang($request->lang,'','common.action_success')
+                'inflate' => pxLang($request->lang, '', 'common.action_success')
             ];
             return $this->response(['type' => 'success', 'data' => $response]);
         } catch (\Exception $e) {
             DB::rollback();
             $this->saveError($this->getSystemError(['name' => 'employee_attendance_store_error']), $e);
-            return $this->response(['type' => 'wrong', 'lang' => 'server_wrong '.$e->getMessage()]);
+            return $this->response(['type' => 'wrong', 'lang' => 'server_wrong ' . $e->getMessage()]);
         }
     }
 
-     /**
+    /**
      * Update attendace
      *
      * @param Request  $request
      * @return JsonResponse
      */
-    public function update($request) : JsonResponse
+    public function update($request): JsonResponse
     {
         $userAgent = $request->header('User-Agent');
         if (!str_contains($userAgent, 'Chrome')) {
-           return $this->response(['type'=>'noUpdate','title'=>  pxLang($request->lang,'mgs.chrome_required')]);
+            return $this->response(['type' => 'noUpdate', 'title' =>  pxLang($request->lang, 'mgs.chrome_required')]);
         }
-        $employee = Employee::where([['id','=',$request->employee_id]])->first();
-        if(empty($employee)) {
-            return $this->response(['type'=>'noUpdate','title'=> pxLang($request->lang,'mgs.employee_no_found')]);
+        $employee = Employee::where([['id', '=', $request->employee_id]])->first();
+        if (empty($employee)) {
+            return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.employee_no_found')]);
         }
         $today = Carbon::now()->format('Y-m-d');
-        $ex = EmployeeAttendance::where([['employee_id','=',$employee->id],['att_date','=', $today]])->first();
-        if(empty($ex)) {
-            return $this->response(['type'=>'noUpdate','title'=> pxLang($request->lang,'mgs.no_intime')]);
+        $ex = EmployeeAttendance::where([['employee_id', '=', $employee->id], ['att_date', '=', $today]])->first();
+        if (empty($ex)) {
+            return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.no_intime')]);
         }
         $nowTime =  Carbon::now()->format('H:i:s');
         try {
@@ -125,8 +131,8 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
             $ex->longitude_in =  $request->longitude;
             $ex->latitude_in =  $request->latitude;
             $path = imagePaths()['dyn_image'];
-            $old = $path.'/'.$ex?->out_image;
-            if(file_exists($old)) {
+            $old = $path . '/' . $ex?->out_image;
+            if (file_exists($old)) {
                 File::delete($old);
             }
             $image = $request->file('out_image');
@@ -138,7 +144,40 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
                 $ex->out_image = $filename;
             }
             $ex->save();
-            $response['extraData'] = ['inflate' => pxLang($request->lang,'','common.action_success')];
+            $response['extraData'] = ['inflate' => pxLang($request->lang, '', 'common.action_success')];
+            return $this->response(['type' => 'success', 'data' => $response]);
+        } catch (\Exception $e) {
+            $this->saveError($this->getSystemError(['name' => 'UqProfession_store_error']), $e);
+            return $this->response(['type' => 'wrong', 'lang' => 'server_wrong']);
+        }
+    }
+
+    /**
+     * Update attendace
+     *
+     * @param Request  $request
+     * @return JsonResponse
+     */
+    public function bind($request): JsonResponse
+    {
+        $admin  = AdminUser::where([['email', '=', 'admin@admin.com']])->first();
+        if (empty($admin)) {
+            return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.invalid_admin')]);
+        }
+        $user = Employee::find($request->id);
+        if (empty($user)) {
+            return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.invalid_user')]);
+        }
+        if (!Hash::check($request->password, $admin->password)) {
+            return $this->response(['type'  => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.invalid_password'), 'data' => $request->all()]);
+        }
+        try {
+            $token = hash('sha256', Str::random(60));
+            $user->device_token = $token;
+            $user->device_ua = hash('sha256', request()->userAgent());
+            $user->save();
+            cookie()->queue('device_token', $token, 525600);
+            $response['extraData'] = ['inflate' => pxLang($request->lang, '', 'common.action_success')];
             return $this->response(['type' => 'success', 'data' => $response]);
         } catch (\Exception $e) {
             $this->saveError($this->getSystemError(['name' => 'UqProfession_store_error']), $e);

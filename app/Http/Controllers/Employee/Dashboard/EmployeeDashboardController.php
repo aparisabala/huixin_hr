@@ -13,7 +13,7 @@ class EmployeeDashboardController extends Controller
     use BaseTrait;
     public function __construct()
     {
-        $this->middleware(['auth:employee','HasEmployeePassword','HasEmployeeAuth']);
+        $this->middleware(['auth:employee', 'HasEmployeePassword', 'HasEmployeeAuth']);
     }
 
     /**
@@ -22,8 +22,14 @@ class EmployeeDashboardController extends Controller
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
+        if (!request()->cookie('device_token')) {
+            $user = Auth::user();
+            $user->device_token = NULL;
+            $user->device_ua = NULL;
+            $user->save();
+        }
         return view('employee.pages.dashboard.index');
     }
     //vpx_attach

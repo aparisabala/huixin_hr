@@ -42,9 +42,9 @@ class EmployeeAttendanceEntryStoreController extends Controller
      * Store employeeattendance form
      *
      * @param Request $request
-     * @return void
+     * @return JsonResponse
      */
-    public function store(ValidateEmployeeAttendanceEntryStore $request)
+    public function store(ValidateEmployeeAttendanceEntryStore $request): JsonResponse
     {
         return $this->iEmployeeAttendanceEntryStoreRepo->store($request);
     }
@@ -53,10 +53,21 @@ class EmployeeAttendanceEntryStoreController extends Controller
      * Update employeeattendance form
      *
      * @param Request $request
-     * @return void
+     * @return JsonResponse
      */
-    public function update(ValidateEmployeeAttendanceEntryStore $request)
+    public function update(ValidateEmployeeAttendanceEntryStore $request): JsonResponse
     {
         return $this->iEmployeeAttendanceEntryStoreRepo->update($request);
+    }
+
+    /**
+     * Bind user
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function bind(Request $request): JsonResponse
+    {
+        return $this->iEmployeeAttendanceEntryStoreRepo->bind($request);
     }
 }

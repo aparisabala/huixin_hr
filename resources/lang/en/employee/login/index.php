@@ -16,7 +16,8 @@ return [
         'pass_changed' => 'Your password changed succesfully, please login to continue',
         'login_successfull' => 'Successfully logged in, redirecting shortly',
         'inc_pass' => 'Incorrect username or password combination',
-        'must_valid_email' => 'Must be a valid email or mobile number'
+        'must_valid_email' => 'Must be a valid email or mobile number',
+        'must_login_form_authorised_device' => "Login invalid, user your device to login"
     ],
     'fields' => [
         'email' => 'Email',
@@ -27,6 +28,5 @@ return [
         'remember' => 'Remember Me',
         'btn_login' => 'Log In',
     ],
-    'table' => [
-    ]
+    'table' => []
 ];

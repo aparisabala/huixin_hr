@@ -25,16 +25,16 @@ class EmployeeLoginController extends Controller
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $data = [];
-        if(isset($_GET['pass_changed']) && $_GET['pass_changed']) {
+        if (isset($_GET['pass_changed']) && $_GET['pass_changed']) {
             $data = [
-                "success" => [pxLang($this->lang,'mgs.pass_changed')]
+                "success" => [pxLang($this->lang, 'mgs.pass_changed')]
             ];
         }
         $data['lang'] = $this->lang;
-        return view('employee.pages.login.index')->with('data',$data)->withErrors($data);
+        return view('employee.pages.login.index')->with('data', $data)->withErrors($data);
     }
 
     /**
@@ -43,28 +43,34 @@ class EmployeeLoginController extends Controller
      * @param ValidateEmployeeLogin $request
      * @return JsonResponse
      */
-    public function login(ValidateEmployeeLogin $request) : JsonResponse
+    public function login(ValidateEmployeeLogin $request): JsonResponse
     {
         $u = $request->get('u');
         $attempt_to = $request->get('attempt_to');
         if (empty($u)) {
-            return $this->response([ 'type' => "noUpdate", "title" => pxLang($this->lang,'mgs.no_user')]);
+            return $this->response(['type' => "noUpdate", "title" => pxLang($this->lang, 'mgs.no_user')]);
         }
-        if($u?->status == 'Disabled') {
-            return $this->response([ 'type' => "noUpdate", "title" => pxLang($this->lang,'mgs.ac_disabled')]);
+        if ($u?->status == 'Disabled') {
+            return $this->response(['type' => "noUpdate", "title" => pxLang($this->lang, 'mgs.ac_disabled')]);
+        }
+
+        if ($u?->device_token != null) {
+            if ($u->device_token != request()->cookie('device_token')) {
+                return $this->response(['type' => "noUpdate", "title" => pxLang($this->lang, 'mgs.must_login_form_authorised_device')]);
+            }
         }
         $remember = false;
-        if(isset($request->remember) && $request->remember == "yes") {
+        if (isset($request->remember) && $request->remember == "yes") {
             $remember = true;
         }
         if (Auth::guard('employee')->attempt([$attempt_to => $request->safe()->email, 'password' => $request->safe()->password], $remember)) {
             $data['extraData'] = [
-                "inflate" => pxLang($this->lang,'mgs.login_successfull'),
+                "inflate" => pxLang($this->lang, 'mgs.login_successfull'),
                 "redirect" => 'employee/dashboard'
             ];
-            return $this->response(['type' => "success",'data'=> $data]);
+            return $this->response(['type' => "success", 'data' => $data]);
         } else {
-            return $this->response([ 'type' => "noUpdate", "title" => '<span class="text-danger fs-16">'.pxLang($this->lang,'mgs.inc_pass').'</span>']);
+            return $this->response(['type' => "noUpdate", "title" => '<span class="text-danger fs-16">' . pxLang($this->lang, 'mgs.inc_pass') . '</span>']);
         }
     }
 

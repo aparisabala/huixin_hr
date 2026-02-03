@@ -16,7 +16,10 @@ return [
     'mgs' => [
         'chrome_required' => 'Only chrome browser required',
         'employee_no_found' => 'Employee not found, try again',
-        'no_intime' => 'In Time not found, try again'
+        'no_intime' => 'In Time not found, try again',
+        'invalid_admin' => 'Invalid admin, try again',
+        'invalid_user' => 'Invalid user, try again',
+        'invalid_password' => 'Incorrect admin password, try again'
     ],
     'text' => [
         'in_time' => 'In Time',
@@ -39,6 +42,5 @@ return [
             'btn_entry' => 'Sign Out'
         ]
     ],
-    'table' => [
-    ]
+    'table' => []
 ];

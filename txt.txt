@@ -1,0 +1,1 @@
+ALTER TABLE `employees` ADD `device_token` VARCHAR(255) NULL AFTER `user_ip`, ADD `device_ua` VARCHAR(255) NULL AFTER `device_token`;

@@ -46,6 +46,8 @@ return new class extends Migration
             $table->string('in_time', 15)->nullable();
             $table->string('out_time', 15)->nullable();
             $table->string('user_ip', 30)->nullable();
+            $table->string('device_token', 30)->nullable();
+            $table->string('device_ua', 30)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

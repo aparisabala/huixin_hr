@@ -113,9 +113,17 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
     public function update($request): JsonResponse
     {
         $userAgent = $request->header('User-Agent');
-        if (!str_contains($userAgent, 'Chrome')) {
-            return $this->response(['type' => 'noUpdate', 'title' =>  pxLang($request->lang, 'mgs.chrome_required')]);
+
+        $isChrome = str_contains($userAgent, 'Chrome') || str_contains($userAgent, 'Chromium');
+        $isSafari = str_contains($userAgent, 'Safari') && !str_contains($userAgent, 'Chrome') && !str_contains($userAgent, 'Chromium');
+
+        if (!($isChrome || $isSafari)) {
+            return $this->response([
+                'type'  => 'noUpdate',
+                'title' => pxLang($request->lang, 'mgs.chrome_or_safari_required'),
+            ]);
         }
+
         $employee = Employee::where([['id', '=', $request->employee_id]])->first();
         if (empty($employee)) {
             return $this->response(['type' => 'noUpdate', 'title' => pxLang($request->lang, 'mgs.employee_no_found')]);

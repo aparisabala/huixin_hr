@@ -14,7 +14,7 @@ return [
         'item1' => 'LibTimeZone crud'
     ],
     'mgs' => [
-        'chrome_required' => 'Only chrome browser required',
+        'chrome_or_safari_required' => 'Only chrome and Safari browser required',
         'employee_no_found' => 'Employee not found, try again',
         'no_intime' => 'In Time not found, try again',
         'invalid_admin' => 'Invalid admin, try again',

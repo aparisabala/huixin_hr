@@ -28,7 +28,7 @@ class SetBootConfig
                     "service_domain" => "huixinglobal.shop",
                     "address" => "Address",
                     "mobile_number" => "01XXX0017454",
-                    "service_email" => "email@domain.com",
+                    "service_email" => "info@huixinglobal.shop",
                     'logo' => url('images/system/logo.png'),
                     'favicon' => url('images/system/favicon.png'),
                 ]

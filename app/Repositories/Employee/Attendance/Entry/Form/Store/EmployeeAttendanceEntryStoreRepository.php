@@ -114,15 +114,15 @@ class  EmployeeAttendanceEntryStoreRepository extends BaseRepository implements 
     {
         $userAgent = $request->header('User-Agent');
 
-        $isChrome = str_contains($userAgent, 'Chrome') || str_contains($userAgent, 'Chromium');
-        $isSafari = str_contains($userAgent, 'Safari') && !str_contains($userAgent, 'Chrome') && !str_contains($userAgent, 'Chromium');
+        // $isChrome = str_contains($userAgent, 'Chrome') || str_contains($userAgent, 'Chromium');
+        // $isSafari = str_contains($userAgent, 'Safari') && !str_contains($userAgent, 'Chrome') && !str_contains($userAgent, 'Chromium');
 
-        if (!($isChrome || $isSafari)) {
-            return $this->response([
-                'type'  => 'noUpdate',
-                'title' => pxLang($request->lang, 'mgs.chrome_or_safari_required'),
-            ]);
-        }
+        // if (!($isChrome || $isSafari)) {
+        //     return $this->response([
+        //         'type'  => 'noUpdate',
+        //         'title' => pxLang($request->lang, 'mgs.chrome_or_safari_required'),
+        //     ]);
+        // }
 
         $employee = Employee::where([['id', '=', $request->employee_id]])->first();
         if (empty($employee)) {

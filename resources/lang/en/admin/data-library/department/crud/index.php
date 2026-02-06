@@ -25,5 +25,8 @@ return [
         'out_time' => 'Global Out Time',
         'created' => 'Created',
         'actions' => 'Actions',
+    ],
+    'btns' => [
+        'manage_roster' => 'Manage Roster'
     ]
 ];

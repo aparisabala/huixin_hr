@@ -1,17 +1,17 @@
 $(document).ready(function(){
 
     if ($('#frmLoadMonthWise').length > 0) {
-        PX?.utils?.dp('dp',{format: 'Y-m-d'});
+        PX?.utils?.dp({format: 'Y-m-d'});
         let rules = {
-            // from_date: {
-            //     required: true,
-            // },
-            // to_date: {
-            //     required: true,
-            // },
-            // employee_id: {
-            //     required: true,
-            // }
+            from_date: {
+                required: true,
+            },
+            to_date: {
+                required: true,
+            },
+            employee_id: {
+                required: true,
+            }
         };
         PX.ajaxRequest({
             element: 'frmLoadMonthWise',

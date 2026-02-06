@@ -1,36 +1,26 @@
 $(document).ready(function(){
-
-     PX?.utils?.dp({
-        element: 'dp-time',
-        timepicker: true,
-        datepicker: false,
-        format: 'h:i A',
-        formatTime: 'h:i A',
-        validateOnBlur: false,
-        step: 2,
-        scrollInput: false,
-        onShow: function(ct, $input) {
-            $input.val($input.val());
-        }
-    });
-
-    if ($('#frmStoreLibDepartment').length > 0) {
+    
+    if ($('#frmStoreLibDepartmentRoster').length > 0) {
+        PX?.utils?.dp({element: 'dp-roster', format: 'Y-m-d'});
         let rules = {
             name: {
                 required: true,
                 maxlength: 253
             },
-            in_time: {
+            lib_department_id : {
                 required: true,
             },
-            out_time: {
+            start_date: {
                 required: true,
-            }
+            }, 
+            end_date: {
+                required: true,
+            },
         };
         PX.ajaxRequest({
-            element: 'frmStoreLibDepartment',
+            element: 'frmStoreLibDepartmentRoster',
             validation: true,
-            script: 'admin/data-library/department',
+            script: 'admin/data-library/department/crud/roster',
             rules,
             afterSuccess: {
                 type: 'inflate_reset_response_data',
@@ -38,23 +28,25 @@ $(document).ready(function(){
         });
     }
 
-    if ($('#frmUpdateLibDepartment').length > 0) {
+    if ($('#frmUpdateLibDepartmentRoster').length > 0) {
         let rules = {
             name: {
                 required: true,
                 maxlength: 253
             },
-            in_time: {
+            lib_department_id : {
                 required: true,
             },
-            out_time: {
+            start_date: {
                 required: true,
-            }
-        };
+            }, 
+            end_date: {
+                required: true,
+            },   };
         PX.ajaxRequest({
-            element: 'frmUpdateLibDepartment',
+            element: 'frmUpdateLibDepartmentRoster',
             validation: true,
-            script: 'admin/data-library/department/'+$("#patch_id").val(),
+            script: 'admin/data-library/department/crud/roster/'+$("#patch_id").val(),
             rules,
             afterSuccess: {
                 type: 'inflate_response_data',
@@ -62,9 +54,9 @@ $(document).ready(function(){
         });
     }
 
-    if ($("#dtLibDepartment").length > 0) {
+    if ($("#dtLibDepartmentRoster").length > 0) {
         const {pageLang={}} = PX?.config;
-        const {table={},btns={}} = pageLang;
+        const {table={}} = pageLang;
         let col_draft = [
             {
                 data: 'id',
@@ -84,13 +76,15 @@ $(document).ready(function(){
                 title: table?.name
             },
             {
-                data: 'in_time',
-                title: table?.in_time
+                data: 'start_date',
+                title: table?.start_date
             },
-             {
-                data: 'out_time',
-                title: table?.out_time
+            {
+                data: 'end_date',
+                title: table?.end_date
             },
+
+
             {
                 data: 'created_at',
                 title: table?.created
@@ -101,35 +95,32 @@ $(document).ready(function(){
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `
-                    <a href="${baseurl}admin/data-library/department/crud/roster/${data?.id}" class="btn btn-outline-primary btn-sm edit" title="Manage Roster">
-                       ${btns?.manage_roster}
-                    </a>
-                    <a href="${baseurl}admin/data-library/department/${data?.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                    return `<a href="${baseurl}admin/data-library/department/crud/roster/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                         <i class="fas fa-pencil-alt"></i>
                     </a>`;
                 }
             },
         ];
-        PX.renderDataTable('dtLibDepartment', {
+        PX.renderDataTable('dtLibDepartmentRoster', {
             select: true,
-            url: 'admin/data-library/department/list',
+            url: 'admin/data-library/department/crud/roster/list',
             columns: col_draft,
+            body: {lib_department_id: $("#lib_department_id").val()},
             pdf: [1, 2]
         });
     }
 })
 
-function dtLibDepartment(table, api, op) {
+function dtLibDepartmentRoster(table, api, op) {
     PX.deleteAll({
-        element: "deleteAllLibDepartment",
-        script: "admin/data-library/department/delete-list",
+        element: "deleteAllLibDepartmentRoster",
+        script: "admin/data-library/department/crud/roster/delete-list",
         confirm: true,
         api,
     });
     PX.updateAll({
-        element: "updateAllLibDepartment",
-        script: "admin/data-library/department/update-list",
+        element: "updateAllLibDepartmentRoster",
+        script: "admin/data-library/department/crud/roster/update-list",
         confirm: true,
         dataCols: {
             key: "ids",
@@ -153,6 +144,6 @@ function dtLibDepartment(table, api, op) {
             type: "inflate_response_data"
         }
     });
-    PX?.dowloadPdf({ ...op, btn: "downloadLibDepartmentPdf", dataTable: "yes" })
-    PX?.dowloadExcel({ ...op, btn: "downloadLibDepartmentExcel", dataTable: "yes" })
+    PX?.dowloadPdf({ ...op, btn: "downloadLibDepartmentRosterPdf", dataTable: "yes" })
+    PX?.dowloadExcel({ ...op, btn: "downloadLibDepartmentRosterExcel", dataTable: "yes" })
 }

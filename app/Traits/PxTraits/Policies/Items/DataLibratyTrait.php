@@ -13,10 +13,14 @@ trait DataLibratyTrait {
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],
                 [
+                    'name' => 'Lib Department Roster Crud',
+                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                ],
+                [
                     'name' => 'Lib Designation Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],
-                  [
+                [
                     'name' => 'Lib Leave Crud',
                     'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
                 ],

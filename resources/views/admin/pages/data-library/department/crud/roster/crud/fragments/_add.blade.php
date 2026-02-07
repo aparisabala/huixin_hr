@@ -2,8 +2,9 @@
     <span class="text-light"> <a href=""><span class="badge badge-info cursor-pointer"> <i class='fa-solid fa-arrow-left fs-16'></i></span></a> <span class="pt-1">{{pxLang($data['lang'],'add')}}  </span> </span>
 </div>
 <div class="mt-4 p-3">
-    @can('lib_department_crud_store')
-        <form id="frmStoreLibDepartment" autocomplete="off">
+    @can('lib_department_roster_crud_store')
+        <form id="frmStoreLibDepartmentRoster" autocomplete="off">
+            <input type="hidden" name="lib_department_id" value="{{$data['lib_department_id']}}">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
@@ -16,15 +17,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.in_time')}}</b> <em class="required">*</em> <span id="in_time_error"></span></label>
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.start_date')}}</b> <em class="required">*</em> <span id="start_date_error"></span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control dp-time" name="in_time" id="in_time">
+                                        <input type="text" class="form-control dp-roster" name="start_date" id="start_date">
                                     </div>
                                 </div>
-                                 <div class="form-group text-left mb-3">
-                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.out_time')}}</b> <em class="required">*</em> <span id="out_time_error"></span></label>
+                                <div class="form-group text-left mb-3">
+                                    <label class="form-label"> <b>{{pxLang($data['lang'],'fields.end_date')}}</b> <em class="required">*</em> <span id="end_date_error"></span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control dp-time" name="out_time" id="out_time">
+                                        <input type="text" class="form-control dp-roster" name="end_date" id="end_date">
                                     </div>
                                 </div>
                                 <div class="mb-3 mt-3 text-end">

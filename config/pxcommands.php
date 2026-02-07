@@ -174,6 +174,7 @@ return [
         'admin.data-library.inventory.category.category-item.crud' => 'admin/data-library/inventory/category/category-item/crud/index',
         'admin.data-library.documents.crud' => 'admin/data-library/documents/crud/index',
         'admin.employee.draft.crud.document.crud' => 'admin/employee/draft/crud/document/crud/index',
-        'admin.employee.active.dt.active-employee.modal.user-setting' => 'admin/employee/active/dt/active-employee/modal/user-setting/index'
+        'admin.employee.active.dt.active-employee.modal.user-setting' => 'admin/employee/active/dt/active-employee/modal/user-setting/index',
+        'admin.data-library.department.crud.roster.crud' => 'admin/data-library/department/crud/roster/crud/index'
     ]
 ];

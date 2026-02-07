@@ -1,6 +1,6 @@
 @extends('employee.layouts.main-layout', ['tabTitle' => config('i.service_name') . ' | ' . pxLang($data['lang'], 'breadCum.title')])
 @section('page')
-    @if (request()->cookie('device_token'))
+    @if (auth()->user()->device_token != null)
         @include('employee.pages.attendance.entry.form.store.fragments._attendance')
     @else
         <div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">

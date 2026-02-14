@@ -67,6 +67,10 @@ trait DataLibratyTrait
                     'name' => 'Lib Document Crud',
                     'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
+                [
+                    'name' => 'Add Roster Employee Load View',
+                    'keys' => ['view', 'load']
+                ],
             ]
         ];
     }

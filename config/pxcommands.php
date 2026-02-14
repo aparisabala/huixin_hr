@@ -177,6 +177,7 @@ return [
         'admin.employee.active.dt.active-employee.modal.user-setting' => 'admin/employee/active/dt/active-employee/modal/user-setting/index',
         'admin.data-library.department.crud.roster.crud' => 'admin/data-library/department/crud/roster/crud/index',
         'admin.data-library.department.crud.roster.crud.crud' => 'admin/data-library/department/crud/roster/crud/crud/index',
-        'admin.data-library.shift.crud' => 'admin/data-library/shift/crud/index'
+        'admin.data-library.shift.crud' => 'admin/data-library/shift/crud/index',
+        'admin.data-library.department.crud.roster.modify.load' => 'admin/data-library/department/crud/roster/modify/load/index'
     ]
 ];

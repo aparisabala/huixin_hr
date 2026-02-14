@@ -8,8 +8,6 @@ use Illuminate\Support\ServiceProvider;
 //vpx_imports
 use App\Repositories\Admin\DataLibrary\Shift\Crud\ILibShiftCrudRepository;
 use App\Repositories\Admin\DataLibrary\Shift\Crud\LibShiftCrudRepository;
-use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\Crud\ILibDepartmentRosterEmployeeCrudRepository;
-use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\Crud\LibDepartmentRosterEmployeeCrudRepository;
 use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\ILibDepartmentRosterCrudRepository;
 use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\LibDepartmentRosterCrudRepository;
 use App\Repositories\Admin\Employee\Active\Dt\ActiveEmployee\Modal\UserSetting\IUserSettingRepository;
@@ -74,45 +72,44 @@ use App\Repositories\Admin\System\User\Crud\IAdminUserCrudRepository;
 use App\Repositories\Admin\System\User\Crud\AdminUserCrudRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
-        /**
-         * Register any application services.
-         */
-        public function register(): void
-        {
-            $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
-            //vpx_attach
-            $this->app->bind(abstract: ILibShiftCrudRepository::class, concrete: LibShiftCrudRepository::class);
-            $this->app->bind(abstract: ILibDepartmentRosterEmployeeCrudRepository::class, concrete: LibDepartmentRosterEmployeeCrudRepository::class);
-            $this->app->bind(abstract: ILibDepartmentRosterCrudRepository::class, concrete: LibDepartmentRosterCrudRepository::class);
-            $this->app->bind(abstract: IUserSettingRepository::class, concrete: UserSettingRepository::class);
-            $this->app->bind(abstract: IEmployeeDocumentCrudRepository::class, concrete: EmployeeDocumentCrudRepository::class);
-            $this->app->bind(abstract: ILibDocumentCrudRepository::class, concrete: LibDocumentCrudRepository::class);
-            $this->app->bind(abstract: ILibInventoryCatItemCrudRepository::class, concrete: LibInventoryCatItemCrudRepository::class);
-            $this->app->bind(abstract: ILibInventoryCatCrudRepository::class, concrete: LibInventoryCatCrudRepository::class);
-            $this->app->bind(abstract: IEmployeeReconDtRepository::class, concrete: EmployeeReconDtRepository::class);
-            $this->app->bind(abstract: IAddReconciliationRepository::class, concrete: AddReconciliationRepository::class);
-            $this->app->bind(abstract: IReconHistoryDtRepository::class, concrete: ReconHistoryDtRepository::class);
-            $this->app->bind(abstract: IMonthWiseLoadRepository::class, concrete: MonthWiseLoadRepository::class);
-            $this->app->bind(abstract: IEmployeeAttendanceEntryStoreRepository::class, concrete: EmployeeAttendanceEntryStoreRepository::class);
-            $this->app->bind(abstract: IActiveEmployeeDtRepository::class, concrete: ActiveEmployeeDtRepository::class);
-            $this->app->bind(abstract: IViewDraftEmployeeRepository::class, concrete: ViewDraftEmployeeRepository::class);
-            $this->app->bind(abstract: IEmployeeSalarySalarySetupUpdateRepository::class, concrete: EmployeeSalarySalarySetupUpdateRepository::class);
-            $this->app->bind(abstract: IRefreshSalaryItemRepository::class, concrete: RefreshSalaryItemRepository::class);
-            $this->app->bind(abstract: ILibSalaryGroupCrudRepository::class, concrete: LibSalaryGroupCrudRepository::class);
-            $this->app->bind(abstract: ILibBankCrudRepository::class, concrete: LibBankCrudRepository::class);
-            $this->app->bind(abstract: IEmployeeBankDetailsUpdateRepository::class, concrete: EmployeeBankDetailsUpdateRepository::class);
-            $this->app->bind(abstract: IEmployeeLeaveCrudRepository::class, concrete: EmployeeLeaveCrudRepository::class);
-            $this->app->bind(abstract: ILibDgreeCrudRepository::class, concrete: LibDgreeCrudRepository::class);
-            $this->app->bind(abstract: ILibBoardCrudRepository::class, concrete: LibBoardCrudRepository::class);
-            $this->app->bind(abstract: IEmployeeEducationCrudRepository::class, concrete: EmployeeEducationCrudRepository::class);
-            $this->app->bind(abstract: IEmployeeUpdateRepository::class, concrete: EmployeeUpdateRepository::class);
-            $this->app->bind(abstract: IEmployeeCrudRepository::class, concrete: EmployeeCrudRepository::class);
-            $this->app->bind(abstract: ILibLeaveCrudRepository::class, concrete: LibLeaveCrudRepository::class);
-            $this->app->bind(abstract: ILibDepartmentCrudRepository::class, concrete: LibDepartmentCrudRepository::class);
-            $this->app->bind(abstract: ILibDesignationCrudRepository::class, concrete: LibDesignationCrudRepository::class);
-            $this->app->bind(abstract: ILibSalaryHeadCrudRepository::class, concrete: LibSalaryHeadCrudRepository::class);
-            $this->app->bind(abstract: IAdminUserPolicyRepository::class, concrete: AdminUserPolicyRepository::class);
-            $this->app->bind(abstract: IAdminUserRoleCrudRepository::class, concrete: AdminUserRoleCrudRepository::class);
-            $this->app->bind(abstract: IAdminUserCrudRepository::class, concrete: AdminUserCrudRepository::class);
-        }
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
+        //vpx_attach
+        $this->app->bind(abstract: ILibShiftCrudRepository::class, concrete: LibShiftCrudRepository::class);
+        $this->app->bind(abstract: ILibDepartmentRosterCrudRepository::class, concrete: LibDepartmentRosterCrudRepository::class);
+        $this->app->bind(abstract: IUserSettingRepository::class, concrete: UserSettingRepository::class);
+        $this->app->bind(abstract: IEmployeeDocumentCrudRepository::class, concrete: EmployeeDocumentCrudRepository::class);
+        $this->app->bind(abstract: ILibDocumentCrudRepository::class, concrete: LibDocumentCrudRepository::class);
+        $this->app->bind(abstract: ILibInventoryCatItemCrudRepository::class, concrete: LibInventoryCatItemCrudRepository::class);
+        $this->app->bind(abstract: ILibInventoryCatCrudRepository::class, concrete: LibInventoryCatCrudRepository::class);
+        $this->app->bind(abstract: IEmployeeReconDtRepository::class, concrete: EmployeeReconDtRepository::class);
+        $this->app->bind(abstract: IAddReconciliationRepository::class, concrete: AddReconciliationRepository::class);
+        $this->app->bind(abstract: IReconHistoryDtRepository::class, concrete: ReconHistoryDtRepository::class);
+        $this->app->bind(abstract: IMonthWiseLoadRepository::class, concrete: MonthWiseLoadRepository::class);
+        $this->app->bind(abstract: IEmployeeAttendanceEntryStoreRepository::class, concrete: EmployeeAttendanceEntryStoreRepository::class);
+        $this->app->bind(abstract: IActiveEmployeeDtRepository::class, concrete: ActiveEmployeeDtRepository::class);
+        $this->app->bind(abstract: IViewDraftEmployeeRepository::class, concrete: ViewDraftEmployeeRepository::class);
+        $this->app->bind(abstract: IEmployeeSalarySalarySetupUpdateRepository::class, concrete: EmployeeSalarySalarySetupUpdateRepository::class);
+        $this->app->bind(abstract: IRefreshSalaryItemRepository::class, concrete: RefreshSalaryItemRepository::class);
+        $this->app->bind(abstract: ILibSalaryGroupCrudRepository::class, concrete: LibSalaryGroupCrudRepository::class);
+        $this->app->bind(abstract: ILibBankCrudRepository::class, concrete: LibBankCrudRepository::class);
+        $this->app->bind(abstract: IEmployeeBankDetailsUpdateRepository::class, concrete: EmployeeBankDetailsUpdateRepository::class);
+        $this->app->bind(abstract: IEmployeeLeaveCrudRepository::class, concrete: EmployeeLeaveCrudRepository::class);
+        $this->app->bind(abstract: ILibDgreeCrudRepository::class, concrete: LibDgreeCrudRepository::class);
+        $this->app->bind(abstract: ILibBoardCrudRepository::class, concrete: LibBoardCrudRepository::class);
+        $this->app->bind(abstract: IEmployeeEducationCrudRepository::class, concrete: EmployeeEducationCrudRepository::class);
+        $this->app->bind(abstract: IEmployeeUpdateRepository::class, concrete: EmployeeUpdateRepository::class);
+        $this->app->bind(abstract: IEmployeeCrudRepository::class, concrete: EmployeeCrudRepository::class);
+        $this->app->bind(abstract: ILibLeaveCrudRepository::class, concrete: LibLeaveCrudRepository::class);
+        $this->app->bind(abstract: ILibDepartmentCrudRepository::class, concrete: LibDepartmentCrudRepository::class);
+        $this->app->bind(abstract: ILibDesignationCrudRepository::class, concrete: LibDesignationCrudRepository::class);
+        $this->app->bind(abstract: ILibSalaryHeadCrudRepository::class, concrete: LibSalaryHeadCrudRepository::class);
+        $this->app->bind(abstract: IAdminUserPolicyRepository::class, concrete: AdminUserPolicyRepository::class);
+        $this->app->bind(abstract: IAdminUserRoleCrudRepository::class, concrete: AdminUserRoleCrudRepository::class);
+        $this->app->bind(abstract: IAdminUserCrudRepository::class, concrete: AdminUserCrudRepository::class);
+    }
 }

@@ -2,64 +2,70 @@
 
 namespace App\Traits\PxTraits\Policies\Items;
 
-trait DataLibratyTrait {
+trait DataLibratyTrait
+{
 
-    public function dataLibraryPolicy(){
+    public function dataLibraryPolicy()
+    {
         return [
             'name' => 'Data Library Policy',
             'policies' => [
                 [
                     'name' => 'Lib Department Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Department Roster Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
 
                 [
                     'name' => 'Lib Department Roster Employee Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Designation Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
+                ],
+                [
+                    'name' => 'Lib Shift Crud',
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Leave Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Board Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Dgree Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Salary Head Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
-                 [
+                [
                     'name' => 'Lib Salary Group Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Bank Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Inventory Cat Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Inventory Cat Item Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
                 [
                     'name' => 'Lib Document Crud',
-                    'keys' => ['view','store','bulk_update','delete','pdf','excel','edit']
+                    'keys' => ['view', 'store', 'bulk_update', 'delete', 'pdf', 'excel', 'edit']
                 ],
             ]
         ];

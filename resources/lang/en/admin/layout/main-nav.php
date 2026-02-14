@@ -16,6 +16,7 @@ return [
     'data-library.menu' => 'Data Library',
     'data-library.menu.salary-setup' => 'Salary Setup',
     'data-library.menu.department' => 'Departments',
+    'data-library.menu.shift' => 'Shifts',
     'data-library.menu.designation' => 'Designations',
     'data-library.menu.board' => 'Education Board',
     'data-library.menu.dgree' => 'Education Dgree',

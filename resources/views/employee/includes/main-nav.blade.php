@@ -29,6 +29,12 @@
                         <span>{{pxLang('employee.main-nav','dashboard')}}</span>
                     </a>
                 </li>
+                <li class="">
+                    <a href="{{url('employee/task-manage')}}" class="">
+                        <i class="fa fa-list"></i>
+                        <span>{{pxLang('employee.main-nav','my-task')}}</span>
+                    </a>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-cog"></i>

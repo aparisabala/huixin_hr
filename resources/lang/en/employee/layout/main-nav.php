@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'my-task' => 'My Task',
     'system.core' => 'System Core',
     'system.core.user_role' => 'User Roles',
     'system.core.user' => 'Users',

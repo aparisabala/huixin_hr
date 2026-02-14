@@ -10,7 +10,8 @@ return [
                     'boxIcon',
                     'jqConfirm',
                     'datatable5',
-                    'dateTimePicker'
+                    'dateTimePicker',
+                    'summer_note'
                 ],
                 'local' => [
                     'px/plugins',
@@ -18,9 +19,7 @@ return [
                     'panel/admin',
                     'panel/minible'
                 ],
-                'conditional' => [
-
-                ]
+                'conditional' => []
             ],
             'scripts' => [
                 'cdns' => [
@@ -34,7 +33,8 @@ return [
                     'dataTableSelectCheckbox',
                     'pdfmake',
                     'xlsx',
-                    'dateTimePicker'
+                    'dateTimePicker',
+                    'summer_note'
                 ],
                 'local' => [
                     'px/plugins',
@@ -62,7 +62,8 @@ return [
                     'boxIcon',
                     'jqConfirm',
                     'datatable5',
-                    'dateTimePicker'
+                    'dateTimePicker',
+                    'summer_note'
                 ],
                 'local' => [
                     'px/plugins',
@@ -70,9 +71,7 @@ return [
                     'panel/employee',
                     'panel/minible'
                 ],
-                'conditional' => [
-
-                ]
+                'conditional' => []
             ],
             'scripts' => [
                 'cdns' => [
@@ -86,7 +85,8 @@ return [
                     'dataTableSelectCheckbox',
                     'pdfmake',
                     'xlsx',
-                    'dateTimePicker'
+                    'dateTimePicker',
+                    'summer_note'
                 ],
                 'local' => [
                     'px/plugins',
@@ -99,7 +99,8 @@ return [
                     'dashboard',
                     'setup',
                     'reset',
-                    'attendance'
+                    'attendance',
+                    'task-manage'
                 ]
             ]
         ]
@@ -112,7 +113,10 @@ return [
             'jqConfirm' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g==" crossorigin="anonymous" referrerpolicy="no-referrer" />',
             'datatable5' => '<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.10/css/jquery.dataTables.min.css">',
             'dataTableSelectCheckbox' => '<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.13/css/dataTables.checkboxes.css">',
-            'dateTimePicker' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />'
+            'dateTimePicker' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />',
+            'animate' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />',
+            'boostrapIcon' => '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />',
+            'summer_note' => '<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">'
         ]
     ],
     'scripts' => [
@@ -125,7 +129,11 @@ return [
             'dataTableSelectCheckbox' => '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-datatables-checkboxes@1.2.13/js/dataTables.checkboxes.min.js"></script>',
             'pdfmake' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/pdfmake.min.js" integrity="sha512-axXaF5grZBaYl7qiM6OMHgsgVXdSLxqq0w7F4CQxuFyrcPmn0JfnqsOtYHUun80g6mRRdvJDrTCyL8LQqBOt/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
             'xlsx' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.core.min.js" integrity="sha512-UhlYw//T419BPq/emC5xSZzkjjreRfN3426517rfsg/XIEC02ggQBb680V0VvP+zaDZ78zqse3rqnnI5EJ6rxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
-            'dateTimePicker' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>'
+            'dateTimePicker' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
+            'wow' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
+            'easing' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
+            'paralaxJs' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>',
+            'summer_note' => '<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>'
         ]
     ],
     'language' => [
@@ -176,6 +184,7 @@ return [
         'admin.employee.draft.crud.document.crud' => 'admin/employee/draft/crud/document/crud/index',
         'admin.employee.active.dt.active-employee.modal.user-setting' => 'admin/employee/active/dt/active-employee/modal/user-setting/index',
         'admin.data-library.department.crud.roster.crud' => 'admin/data-library/department/crud/roster/crud/index',
-        'admin.data-library.department.crud.roster.crud.crud' => 'admin/data-library/department/crud/roster/crud/crud/index'
+        'admin.data-library.department.crud.roster.crud.crud' => 'admin/data-library/department/crud/roster/crud/crud/index',
+        'employee.task-manage.crud' => 'employee/task-manage/crud/index'
     ]
 ];

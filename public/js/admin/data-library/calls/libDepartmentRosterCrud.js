@@ -95,7 +95,12 @@ $(document).ready(function(){
                 title: table?.action,
                 class: 'text-end',
                 render: function (data, type, row) {
-                    return `<a href="${baseurl}admin/data-library/department/crud/roster/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                    return `
+                    <a href="${baseurl}admin/data-library/department/crud/roster-employee/${data.id}"class="btn btn-outline-primary btn-sm" title="Manage Employee">
+                        <i class="fas fa-users"></i>
+                    </a>
+
+                    <a href="${baseurl}admin/data-library/department/crud/roster/${data.id}/edit" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                         <i class="fas fa-pencil-alt"></i>
                     </a>`;
                 }

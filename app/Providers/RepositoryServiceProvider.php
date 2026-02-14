@@ -6,6 +6,8 @@ use App\Repositories\BaseRepository;
 use App\Repositories\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 //vpx_imports
+use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\Crud\ILibDepartmentRosterEmployeeCrudRepository;
+use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\Crud\LibDepartmentRosterEmployeeCrudRepository;
 use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\ILibDepartmentRosterCrudRepository;
 use App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Crud\LibDepartmentRosterCrudRepository;
 use App\Repositories\Admin\Employee\Active\Dt\ActiveEmployee\Modal\UserSetting\IUserSettingRepository;
@@ -77,6 +79,7 @@ class RepositoryServiceProvider extends ServiceProvider
         {
             $this->app->bind(abstract: IBaseRepository::class, concrete: BaseRepository::class);
             //vpx_attach
+            $this->app->bind(abstract: ILibDepartmentRosterEmployeeCrudRepository::class, concrete: LibDepartmentRosterEmployeeCrudRepository::class);
             $this->app->bind(abstract: ILibDepartmentRosterCrudRepository::class, concrete: LibDepartmentRosterCrudRepository::class);
             $this->app->bind(abstract: IUserSettingRepository::class, concrete: UserSettingRepository::class);
             $this->app->bind(abstract: IEmployeeDocumentCrudRepository::class, concrete: EmployeeDocumentCrudRepository::class);

@@ -97,7 +97,7 @@ $(document).ready(function () {
                 class: 'text-end',
                 render: function (data, type, row) {
                     return `
-                    <a href="${baseurl}admin/data-library/department/crud/roster/modify/add-roster-employee"class="btn btn-outline-primary btn-sm" title="Manage Employee">
+                    <a href="${baseurl}admin/data-library/department/crud/roster/modify/add-roster-employee/${data.id}"class="btn btn-outline-primary btn-sm" title="Manage Employee">
                         <i class="fas fa-users"></i>
                     </a>
 

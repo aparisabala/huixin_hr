@@ -4,8 +4,10 @@ namespace App\Repositories\Admin\DataLibrary\Department\Crud\Roster\Modify\Load\
 
 use Illuminate\Http\JsonResponse;
 
-interface IAddRosterEmployeeLoadRepository {
+interface IAddRosterEmployeeLoadRepository
+{
 
-    public function index($request) : array;
-    public function display($request) : array;
+    public function index($request): array;
+    public function display($request): array;
+    public function store($request): array;
 }
